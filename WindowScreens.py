@@ -1,5 +1,11 @@
 #!usr/bin/python
 
+# File WindowScreens.py : Class Screens
+#   contains detailed description of the various screens 
+#   the app is supposed to handle.
+#   This class also handles the input both from user and files 
+#   as well as output to the screen and storage to files.
+#
 from Tkinter import *
 from ttk import *
 import tkMessageBox as tkMB
@@ -8,22 +14,24 @@ from AppElements import *
 from Tickets import *
 
 class Screens(Widgets,Validation,Ticket):
-
-    currentUser=['','']
-    superUser=['masterC659','plcc982#F']
+    """ Class Screens to tackle the various screens/views of the app ui """
+    currentUser=['','']         # holds data of the current logged in user
+    superUser=['masterC659','plcc982#F']        # holds data of the super user for maintenance purposes
 
     def __init__(self,TkObj):
         self.master=TkObj
-        startup=self.traceback()
+        startup=self.traceback()        # traceback to get knowledge of previous users and data of the platforms
         if not(startup):
-            self.master.destroy()
+            self.master.destroy()       # failed startup due to absent data files
         
-        self.welcomeScreen()
+        self.welcomeScreen()            # first startup screen (welcome screen of app)
         
         
 
     def welcomeScreen(self):
+        """ Welcome Screen / first screen of UI """
         self.clearWindow()
+        ## widgets of the screen defined 
         lh=self.createLabel(self.master," Ticket Booking System ",300,"#f5c9f5","garamond",20,0,0)
         self.elementList.append(lh)
         lf=self.createLabel(self.master," (c) Bishal Biswas (: 1920-5201-40-02-002) [-- Project work for NIELIT course(: 1920-5201-40-02)]  ",100,None,"garamond",10,0,585)
@@ -44,28 +52,30 @@ class Screens(Widgets,Validation,Ticket):
         b3=self.createButton(self.master," Log in ",self.welcomeScreen,450,262)
         self.elementList.append(b3)
         if e1.get()=='' and e2.get()=='':
-            tkMB.showinfo("Warning","Empty query ")
+            tkMB.showinfo("Warning","Empty query ")         # warning empty query 
             b3=self.createButton(self.master," Log in ",self.welcomeScreen,450,262)
             self.elementList.append(b3)
-        else:
+        else:                                              # non empty query
             b3=self.createButton(self.master," Log in ",self.userLogIn,450,262)
             self.elementList.append(b3)
         b4=self.createButton(self.master," Register ",self.registration,450,300)
         self.elementList.append(b4)
         
-        self.currentUser=[e1.get(),e2.get()]
+        self.currentUser=[e1.get(),e2.get()]               # fetching data to current user  info
         
 
     def userLogIn(self):
-        if self.userValid(self.currentUser[0],self.currentUser[1])==True:
+        if self.userValid(self.currentUser[0],self.currentUser[1])==True:       # check for validity of exixtence of the user entry
             self.clearWindow()
-            self.dashboard()
+            self.dashboard()                            # dashboard for registered user
         else:
-            tkMB.showwarning("Authentication Error "," UserID or Password is not valid ")
-            self.welcomeScreen()
+            tkMB.showwarning("Authentication Error "," UserID or Password is not valid ")       # failed authentication
+            self.welcomeScreen()                                # back to welcome screen
     
     def dashboard(self):
+        """ Dashboard of a registered user ... opens only if user entered is authenticated and found to have valid existence """
         self.clearWindow()
+        # widget definitions
         lh=self.createLabel(self.master," Dashboard ",300,"#55c9f5","garamond",20,0,0)
         self.elementList.append(lh)
         lf=self.createLabel(self.master," (c) Bishal Biswas (: 1920-5201-40-02-002) [-- Project work for NIELIT course(: 1920-5201-40-02)]  ",100,None,"garamond",10,0,585)
@@ -86,63 +96,69 @@ class Screens(Widgets,Validation,Ticket):
         self.elementList.append(b2)
 
     def intermediate(self):
+        """ Intermediate section to give a logout info and fall back to welcome screen """
         tkMB.showinfo('Message','You have been Logged out ! ... ')
         self.welcomeScreen()
 
     def registration(self):
-         self.clearWindow()
-         lh=self.createLabel(self.master," Registration - new user ",300,"#56c962","garamond",25,0,0)
-         self.elementList.append(lh)
-         lf=self.createLabel(self.master," (c) Bishal Biswas (: 1920-5201-40-02-002) [-- Project work for NIELIT course(: 1920-5201-40-02)]  ",100,None,"garamond",10,0,585)
-         self.elementList.append(lf)
-         b1=self.createButton(self.master," EXIT ",self.master.quit,1100,570)
-         self.elementList.append(b1)
-         b2=self.createButton(self.master," < ",self.welcomeScreen,10,41)
-         self.elementList.append(b2)
-         l1=self.createLabel(self.master," User Name* ",30,"#759aaa","garamond",17,30,120)
-         self.elementList.append(l1)
-         e1=self.createEntry(self.master," userreg ",20,'#698869',"garamond",14,170,122)
-         self.elementList.append(e1)
-         l2=self.createLabel(self.master," password  ",30,"#759aaa","garamond",17,420,120)
-         self.elementList.append(l2)
-         e2=self.createEntryP(self.master," pasreg ",20,'#698869',"garamond",14,560,122)
-         self.elementList.append(e2)
-         l3=self.createLabel(self.master," Full Name  ",50,"#759aaa","garamond",17,30,200)
-         self.elementList.append(l3)
-         e3=self.createEntry(self.master," namereg ",40,'#698869',"garamond",14,190,202)
-         self.elementList.append(e3)
-         l4=self.createLabel(self.master," Address \n\n ",50,"#759aaa","garamond",17,30,270)
-         self.elementList.append(l4)
-         e4=self.createEntry(self.master," addreg ",40,'#698869',"garamond",14,190,272)
-         self.elementList.append(e4)
-         l5=self.createLabel(self.master," Phone  ",50,"#759aaa","garamond",17,30,390)
-         self.elementList.append(l5)
-         e5=self.createEntry(self.master," phonereg ",40,'#698869',"garamond",14,190,392)
-         self.elementList.append(e5)
-         l6=self.createLabel(self.master," Registered ID   ",50,"#759aaa","garamond",17,30,460)
-         self.elementList.append(l6)
-         e6=self.createEntry(self.master," regidEd ",40,'#698869',"garamond",14,190,462)
-         self.elementList.append(e6)
-         b3=self.createButton(self.master," Register ",self.register,700,450)
-         self.elementList.append(b3)
-         self.userR=[e1.get(),e2.get(),e3.get(),e4.get(),e5.get(),e6.get()]
-         
+        """ Registration screen for registration of a new user  """
+        self.clearWindow()
+        ## definition of widgets to registration screen
+        lh=self.createLabel(self.master," Registration - new user ",300,"#56c962","garamond",25,0,0)
+        self.elementList.append(lh)
+        lf=self.createLabel(self.master," (c) Bishal Biswas (: 1920-5201-40-02-002) [-- Project work for NIELIT course(: 1920-5201-40-02)]  ",100,None,"garamond",10,0,585)
+        self.elementList.append(lf)
+        b1=self.createButton(self.master," EXIT ",self.master.quit,1100,570)
+        self.elementList.append(b1)
+        b2=self.createButton(self.master," < ",self.welcomeScreen,10,41)
+        self.elementList.append(b2)
+        l1=self.createLabel(self.master," User Name* ",30,"#759aaa","garamond",17,30,120)
+        self.elementList.append(l1)
+        e1=self.createEntry(self.master," userreg ",20,'#698869',"garamond",14,170,122)
+        self.elementList.append(e1)
+        l2=self.createLabel(self.master," password  ",30,"#759aaa","garamond",17,420,120)
+        self.elementList.append(l2)
+        e2=self.createEntryP(self.master," pasreg ",20,'#698869',"garamond",14,560,122)
+        self.elementList.append(e2)
+        l3=self.createLabel(self.master," Full Name  ",50,"#759aaa","garamond",17,30,200)
+        self.elementList.append(l3)
+        e3=self.createEntry(self.master," namereg ",40,'#698869',"garamond",14,190,202)
+        self.elementList.append(e3)
+        l4=self.createLabel(self.master," Address \n\n ",50,"#759aaa","garamond",17,30,270)
+        self.elementList.append(l4)
+        e4=self.createEntry(self.master," addreg ",40,'#698869',"garamond",14,190,272)
+        self.elementList.append(e4)
+        l5=self.createLabel(self.master," Phone  ",50,"#759aaa","garamond",17,30,390)
+        self.elementList.append(l5)
+        e5=self.createEntry(self.master," phonereg ",40,'#698869',"garamond",14,190,392)
+        self.elementList.append(e5)
+        l6=self.createLabel(self.master," Registered ID   ",50,"#759aaa","garamond",17,30,460)
+        self.elementList.append(l6)
+        e6=self.createEntry(self.master," regidEd ",40,'#698869',"garamond",14,190,462)
+        self.elementList.append(e6)
+        b3=self.createButton(self.master," Register ",self.register,700,450)
+        self.elementList.append(b3)
+        self.userR=[e1.get(),e2.get(),e3.get(),e4.get(),e5.get(),e6.get()]
+        
     def register(self):
+        """ called from Register button from Registration screen. Registers user to database """
         self.registration()
         self.clearWindow()
         if self.userR[0] == '' or self.userR[1] == '' or self.userR[2] == '' or self.userR[3] == '' or self.userR[4] == '':
             tkMB.showwarning('Notification',' ONE OR MORE FIELDS EMPTY. \n User not registerable \n Reconsider filling voids ')
-            self.registration()
+            self.registration()         # empty fields error
         else:
             self.usr_dct.update({self.userR[0]:self.userR[1]})
             self.usr_det.update({self.userR[0]:{'name':self.userR[2],'address':self.userR[3],'phone':self.userR[4],'reg_id':self.userR[5]}})
             self.updateUsrInfo()
-            self.updateUsrDet()
+            self.updateUsrDet()                     # successful registration
             tkMB.showinfo('Notification',' User Registered as : '+ self.userR[0])
             self.welcomeScreen()
 
     def maintenanceFn1(self):
+        """ Maintenance screen1 open up and ask for authentication ID for SuperUser access; called from button on welcomeScreen"""
         self.clearWindow()
+        ## definition of widgets 
         lh=self.createLabel(self.master," Maintenance ",300,"#f5c992","garamond",25,0,0)
         self.elementList.append(lh)
         lf=self.createLabel(self.master," (c) Bishal Biswas (: 1920-5201-40-02-002) [-- Project work for NIELIT course(: 1920-5201-40-02)]  ",100,None,"garamond",10,0,585)
@@ -163,16 +179,18 @@ class Screens(Widgets,Validation,Ticket):
         self.elementList.append(b3)
         if self.superUser == [e1.get(),e2.get()] :
             b3=self.createButton(self.master," Proceed ",self.maintenanceFn2,450,262)
-            self.elementList.append(b3)
+            self.elementList.append(b3)                 # proceeds to maintenance function2 on proper authentication
         else:
-            if e1.get()=='' and e2.get()=='':
+            if e1.get()=='' and e2.get()=='':           # improper or empty query login attempt
                 tkMB.showinfo("Warning","Empty query ")
             else:
                 tkMB.showwarning(" Authentication Error"," INCORRECT AUTHENTICATION ATTEMPT  ")
 
     def maintenanceFn2(self):
+        """ Maintenance function2 to control Maintenance screen 2 ; allows access to changing names of stations and add new stations """
         tkMB.showwarning('Warning Notification','Super User control Granted ')
         self.clearWindow()
+        ## definition of widgets 
         lh=self.createLabel(self.master," Maintenance ",300,"#f5c992","garamond",25,0,0)
         self.elementList.append(lh)
         lf=self.createLabel(self.master," (c) Bishal Biswas (: 1920-5201-40-02-002) [-- Project work for NIELIT course(: 1920-5201-40-02)]  ",100,None,"garamond",10,0,585)
@@ -208,6 +226,7 @@ class Screens(Widgets,Validation,Ticket):
         
 
     def appendVal(self):
+        """ Appends value to the current station list and updates the backing file """
         if self.edits[0]=='':
             tkMB.showwarning('Warning ',' Nothing to append ')
             self.maintenanceFn2()
@@ -216,11 +235,12 @@ class Screens(Widgets,Validation,Ticket):
             self.maintenanceFn2()
         else:
             tkMB.showinfo('Notification ',' Field value appended ')
-            self.info_des.append(self.edits[0])
+            self.info_des.append(self.edits[0])             ## value updated
             self.updateInfo()
             self.maintenanceFn2()
         
     def replaceVal(self):
+        """ Replaces value of a given station name already present in list to the name exclusively defined in input """
         if self.edits[1] == '' or self.edits[2]=='':
             tkMB.showwarning('Warning ',' Required fields empty ')
             self.maintenanceFn2()
@@ -231,16 +251,18 @@ class Screens(Widgets,Validation,Ticket):
             tkMB.showwarning('Warning ',' Replacement element already exists ')
             self.maintenanceFn2()
         else:
-            for i in range(len(self.info_des)):
+            for i in range(len(self.info_des)):         # proper replacement
                 if self.edits[1] == self.info_des[i]:
                     self.info_des[i]=self.edits[2]
                     break
             tkMB.showinfo('Notification ',' Replacement successful ')
-            self.updateInfo()
+            self.updateInfo()                   ## info update
             self.maintenanceFn2()
 
     def bookingNorm(self):
+        """ Booking of Normal Ticket """
         self.clearWindow()
+        ## widget definitions 
         lh=self.createLabel(self.master," Normal Booking  ",300,"#aacc22","garamond",25,0,0)
         self.elementList.append(lh)
         lf=self.createLabel(self.master," (c) Bishal Biswas (: 1920-5201-40-02-002) [-- Project work for NIELIT course(: 1920-5201-40-02)]  ",100,None,"garamond",10,0,585)
@@ -297,7 +319,7 @@ class Screens(Widgets,Validation,Ticket):
         if e1.get()=='':
              self.bookEntries=[self.currentUser[0],0,0,0,0,0,e5.get(),e6.get(),e7.get(),e8.get()]
              tkMB.showwarning('Warning','Fill the "*" fields ')
-        else:
+        else:                       ## filling fields depending on restrictions 
             if e2.get() == '':c=0
             else: c=int(e2.get())
             if e3.get() == '':pd=0
@@ -318,6 +340,7 @@ class Screens(Widgets,Validation,Ticket):
         
 
     def finalBookPathNRM(self):
+        """ Final step of normal booking part1; checks inconsistencies in information supplied  """
         self.bookingNorm()
         if self.validDestinations(self.bookEntries[7],self.bookEntries[8]) and self.validClass(self.bookEntries[5]):
             self.finalBookPathNRM2()
@@ -329,7 +352,9 @@ class Screens(Widgets,Validation,Ticket):
             self.bookingNorm()
 
     def finalBookPathNRM2(self):
+        """ Final step of normal booking part2; fetches the final journey ticket at the end """
         self.clearWindow()
+        ## widget definitions 
         lh=self.createLabel(self.master," Normal Booking  ",300,"#aacc22","garamond",25,0,0)
         self.elementList.append(lh)
         lf=self.createLabel(self.master," (c) Bishal Biswas (: 1920-5201-40-02-002) [-- Project work for NIELIT course(: 1920-5201-40-02)]  ",100,None,"garamond",10,0,585)
@@ -349,39 +374,42 @@ class Screens(Widgets,Validation,Ticket):
         self.elementList.append(b3)
 
     def bookingPlat(self):
-         self.clearWindow()
-         lh=self.createLabel(self.master," Platform Booking  ",300,"#aacc22","garamond",25,0,0)
-         self.elementList.append(lh)
-         lf=self.createLabel(self.master," (c) Bishal Biswas (: 1920-5201-40-02-002) [-- Project work for NIELIT course(: 1920-5201-40-02)]  ",100,None,"garamond",10,0,585)
-         self.elementList.append(lf)
-         b1=self.createButton(self.master," EXIT ",self.master.quit,1100,570)
-         self.elementList.append(b1)
-         b2=self.createButton(self.master," < ",self.dashboard,10,41)
-         self.elementList.append(b2)
-         l1=self.createLabel(self.master," Number of Individuals  ",50,"#755948","garamond",17,50,200)
-         self.elementList.append(l1)
-         e1=self.createEntry(self.master," nosIndv ",5,'#698869',"garamond",14,300,202)
-         self.elementList.append(e1)
-         l2=self.createLabel(self.master," Station Name   ",50,"#755948","garamond",17,50,230)
-         self.elementList.append(l2)
-         e2=self.createEntry(self.master," stn ",10,'#698869',"garamond",14,300,232)
-         self.elementList.append(e2)
-         l3=self.createLabel(self.master," Payment Gateway   ",50,"#755948","garamond",17,50,260)
-         self.elementList.append(l3)
-         e3=self.createEntry(self.master," payGateP ",20,'#698869',"garamond",14,300,262)
-         self.elementList.append(e3)
-         b3=self.createButton(self.master," Proceed \n to \n Book  ",self.finalBookPathPTM,700,350)
-         self.elementList.append(b3)
-         b4=self.createButton(self.master," Destinations  ",self.destnationList,700,250)
-         self.elementList.append(b4)
-         if e1.get()=='':
-             self.bookEntries=[self.currentUser[0],0,e2.get(),e3.get()]
-         else:
-             self.bookEntries=[self.currentUser[0],int(e1.get()),e2.get(),e3.get()]
+        """ Booking for Platform ticket for the user """
+        self.clearWindow()
+        ## definition of widgets 
+        lh=self.createLabel(self.master," Platform Booking  ",300,"#aacc22","garamond",25,0,0)
+        self.elementList.append(lh)
+        lf=self.createLabel(self.master," (c) Bishal Biswas (: 1920-5201-40-02-002) [-- Project work for NIELIT course(: 1920-5201-40-02)]  ",100,None,"garamond",10,0,585)
+        self.elementList.append(lf)
+        b1=self.createButton(self.master," EXIT ",self.master.quit,1100,570)
+        self.elementList.append(b1)
+        b2=self.createButton(self.master," < ",self.dashboard,10,41)
+        self.elementList.append(b2)
+        l1=self.createLabel(self.master," Number of Individuals  ",50,"#755948","garamond",17,50,200)
+        self.elementList.append(l1)
+        e1=self.createEntry(self.master," nosIndv ",5,'#698869',"garamond",14,300,202)
+        self.elementList.append(e1)
+        l2=self.createLabel(self.master," Station Name   ",50,"#755948","garamond",17,50,230)
+        self.elementList.append(l2)
+        e2=self.createEntry(self.master," stn ",10,'#698869',"garamond",14,300,232)
+        self.elementList.append(e2)
+        l3=self.createLabel(self.master," Payment Gateway   ",50,"#755948","garamond",17,50,260)
+        self.elementList.append(l3)
+        e3=self.createEntry(self.master," payGateP ",20,'#698869',"garamond",14,300,262)
+        self.elementList.append(e3)
+        b3=self.createButton(self.master," Proceed \n to \n Book  ",self.finalBookPathPTM,700,350)
+        self.elementList.append(b3)
+        b4=self.createButton(self.master," Destinations  ",self.destnationList,700,250)
+        self.elementList.append(b4)
+        if e1.get()=='':
+            self.bookEntries=[self.currentUser[0],0,e2.get(),e3.get()]
+        else:
+            self.bookEntries=[self.currentUser[0],int(e1.get()),e2.get(),e3.get()]
 
          
 
     def finalBookPathPTM(self):
+        """ Final level of Platform ticket booking; prints ticket at the end """
         self.bookingPlat()
         if self.validDestinations(self.bookEntries[2],self.bookEntries[2]):
             self.clearWindow()
@@ -408,56 +436,61 @@ class Screens(Widgets,Validation,Ticket):
         
 
     def userEdit(self):
-         self.clearWindow()
-         lh=self.createLabel(self.master," User Detail-- Editing  ",300,"#cc23dd","garamond",25,0,0)
-         self.elementList.append(lh)
-         lf=self.createLabel(self.master," (c) Bishal Biswas (: 1920-5201-40-02-002) [-- Project work for NIELIT course(: 1920-5201-40-02)]  ",100,None,"garamond",10,0,585)
-         self.elementList.append(lf)
-         b1=self.createButton(self.master," EXIT ",self.master.quit,1100,570)
-         self.elementList.append(b1)
-         b2=self.createButton(self.master," < ",self.dashboard,10,41)
-         self.elementList.append(b2)
-         l1=self.createLabel(self.master," User Name* ",30,"#7580aa","garamond",17,30,120)
-         self.elementList.append(l1)
-         #e1=self.createEntry(self.master," userEd ",20,'#698869',"garamond",14,170,122)
-         #self.elementList.append(e1)
-         l1p=self.createLabel(self.master,self.currentUser[0],20,"#eedeee","garamond",14,170,122)
-         self.elementList.append(l1p)
-         l2=self.createLabel(self.master," password \n ",30,"#7580aa","garamond",17,420,120)
-         self.elementList.append(l2)
-         e2=self.createEntryP(self.master," pasEd ",20,'#698869',"garamond",14,560,122)
-         self.elementList.append(e2)
-         l2p=self.createLabel(self.master,self.currentUser[1],10,"#eedeee","garamond",12,560,150)
-         self.elementList.append(l2p)
-         l3=self.createLabel(self.master," Full Name \n ",50,"#7580aa","garamond",17,30,200)
-         self.elementList.append(l3)
-         e3=self.createEntry(self.master," nameEd ",40,'#698869',"garamond",14,190,202)
-         self.elementList.append(e3)
-         l3p=self.createLabel(self.master,self.usr_det[self.currentUser[0]]['name'],10,"#eedeee","garamond",12,190,230)
-         self.elementList.append(l3p)
-         l4=self.createLabel(self.master," Address \n\n\n ",50,"#7580aa","garamond",17,30,270)
-         self.elementList.append(l4)
-         e4=self.createEntry(self.master," addEd ",40,'#698869',"garamond",14,190,272)
-         self.elementList.append(e4)
-         l4p=self.createLabelV2(self.master,self.usr_det[self.currentUser[0]]['address'],45,360,"#eedeee","garamond",12,190,300)
-         self.elementList.append(l4p)
-         l5=self.createLabel(self.master," Phone \n ",50,"#7580aa","garamond",17,30,390)
-         self.elementList.append(l5)
-         e5=self.createEntry(self.master," phoneEd ",40,'#698869',"garamond",14,190,392)
-         self.elementList.append(e5)
-         l5p=self.createLabel(self.master,self.usr_det[self.currentUser[0]]['phone'],10,"#eedeee","garamond",12,190,420)
-         self.elementList.append(l5p)
-         l6=self.createLabel(self.master," Registered ID  \n ",50,"#7580aa","garamond",17,30,460)
-         self.elementList.append(l6)
-         e6=self.createEntry(self.master," regidEd ",40,'#698869',"garamond",14,190,462)
-         self.elementList.append(e6)
-         l6p=self.createLabel(self.master,self.usr_det[self.currentUser[0]]['reg_id'],20,"#eedeee","garamond",12,190,490)
-         self.elementList.append(l6p)
-         b3=self.createButton(self.master," Update\nChanges ",self.commitChanges,700,450)
-         self.elementList.append(b3)
-         self.userE=[e2.get(),e3.get(),e4.get(),e5.get(),e6.get()]
+        """ Edits details of users """
+        self.clearWindow()
+        ## widget definitions 
+        lh=self.createLabel(self.master," User Detail-- Editing  ",300,"#cc23dd","garamond",25,0,0)
+        self.elementList.append(lh)
+        lf=self.createLabel(self.master," (c) Bishal Biswas (: 1920-5201-40-02-002) [-- Project work for NIELIT course(: 1920-5201-40-02)]  ",100,None,"garamond",10,0,585)
+        self.elementList.append(lf)
+        b1=self.createButton(self.master," EXIT ",self.master.quit,1100,570)
+        self.elementList.append(b1)
+        b2=self.createButton(self.master," < ",self.dashboard,10,41)
+        self.elementList.append(b2)
+        l1=self.createLabel(self.master," User Name* ",30,"#7580aa","garamond",17,30,120)
+        self.elementList.append(l1)
+            ##entry switched off as username is at the moment considered unique and not transferable 
+        #e1=self.createEntry(self.master," userEd ",20,'#698869',"garamond",14,170,122)
+        #self.elementList.append(e1)
+        l1p=self.createLabel(self.master,self.currentUser[0],20,"#eedeee","garamond",14,170,122)
+        self.elementList.append(l1p)
+        l2=self.createLabel(self.master," password \n ",30,"#7580aa","garamond",17,420,120)
+        self.elementList.append(l2)
+        e2=self.createEntryP(self.master," pasEd ",20,'#698869',"garamond",14,560,122)
+        self.elementList.append(e2)
+        l2p=self.createLabel(self.master,self.currentUser[1],10,"#eedeee","garamond",12,560,150)
+        self.elementList.append(l2p)
+        l3=self.createLabel(self.master," Full Name \n ",50,"#7580aa","garamond",17,30,200)
+        self.elementList.append(l3)
+        e3=self.createEntry(self.master," nameEd ",40,'#698869',"garamond",14,190,202)
+        self.elementList.append(e3)
+        l3p=self.createLabel(self.master,self.usr_det[self.currentUser[0]]['name'],10,"#eedeee","garamond",12,190,230)
+        self.elementList.append(l3p)
+        l4=self.createLabel(self.master," Address \n\n\n ",50,"#7580aa","garamond",17,30,270)
+        self.elementList.append(l4)
+        e4=self.createEntry(self.master," addEd ",40,'#698869',"garamond",14,190,272)
+        self.elementList.append(e4)
+        l4p=self.createLabelV2(self.master,self.usr_det[self.currentUser[0]]['address'],45,360,"#eedeee","garamond",12,190,300)
+        self.elementList.append(l4p)
+        l5=self.createLabel(self.master," Phone \n ",50,"#7580aa","garamond",17,30,390)
+        self.elementList.append(l5)
+        e5=self.createEntry(self.master," phoneEd ",40,'#698869',"garamond",14,190,392)
+        self.elementList.append(e5)
+        l5p=self.createLabel(self.master,self.usr_det[self.currentUser[0]]['phone'],10,"#eedeee","garamond",12,190,420)
+        self.elementList.append(l5p)
+        l6=self.createLabel(self.master," Registered ID  \n ",50,"#7580aa","garamond",17,30,460)
+        self.elementList.append(l6)
+        e6=self.createEntry(self.master," regidEd ",40,'#698869',"garamond",14,190,462)
+        self.elementList.append(e6)
+        l6p=self.createLabel(self.master,self.usr_det[self.currentUser[0]]['reg_id'],20,"#eedeee","garamond",12,190,490)
+        self.elementList.append(l6p)
+        b3=self.createButton(self.master," Update\nChanges ",self.commitChanges,700,450)
+        self.elementList.append(b3)
+        self.userE=[e2.get(),e3.get(),e4.get(),e5.get(),e6.get()]
 
+    
     def commitChanges(self):
+        """ Commit changes to the details of the user; defined in the user edit """
         self.userEdit()
         self.clearWindow()
         if self.userE[0] != '':
@@ -476,19 +509,32 @@ class Screens(Widgets,Validation,Ticket):
             self.dashboard()
         else:
             self.updateUsrInfo()
-            self.updateUsrDet()
+            self.updateUsrDet()             ## changes updated 
             tkMB.showinfo('Notification',' Changes Registered')
             self.dashboard()
                               
     
     def destnationList(self):
+        """ Give a list of destinitions in a message box """
         dests=str(self.info_des)
         tkMB.showinfo(' Destination List ',dests)
     
     def showClasses(self):
+        """ Show journey classes or coaches """
         clss=str(['SL','II','CC','2A','3A'])
         tkMB.showinfo(' Journey Classes ',clss)
 
     def clearWindow(self):
+        """ Clears window of all widgets; provided they are properly available in the element list """
         for element in self.elementList:
             element.destroy()
+
+
+## end of class 
+
+#### Test procedure ----v
+#root=Tk()
+#ev=Screens(root)
+#root.wm_title(" AppWindow ")
+#root.geometry("1200x600")
+#root.mainloop()

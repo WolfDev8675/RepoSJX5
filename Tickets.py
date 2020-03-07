@@ -1,23 +1,32 @@
 #!usr/bin/python
 
+# File Tickets.py : Class Ticket
+# holds methods for ticket generation provided 
+# that the rates for the tickets are predefined 
+# 
+
 import random as Rn
 class Ticket():
+    """ Class Ticket for handling ticket generation """
     
     __Tid=[]
 
     def __init__(self,Tid=None):
+        """ Default unlinked usage initialization """
         if Tid == None:
             self.__Tid=self.idGen()
         else:
             self.__Tid=Tid
 
     def idGen(self):
+        """ Generate a 10 digit ID """
         idLocal=10**10 * Rn.random() 
         idLocal=str(int(idLocal))
         self.__Tid=idLocal
         return self.__Tid
     
     def costNormal(self,data=[]):
+        """ Generate a Normal Ticket price/cost """
         nAd=data[0]
         nC=data[1]
         nPD=data[2]
@@ -28,6 +37,7 @@ class Ticket():
         if dst<5 and dst>3:dst=5
         if dst<8 and dst>5:dst=8
         if dst<10 and dst>8:dst=10
+        ## rate of tickets
         rate={'2A':{3:500,5:1000,8:1500,10:2000},'II':{3:5,5:10,8:15,10:20},'CC':{3:50,5:100,8:150,10:200},'SL':{3:75,5:150,8:225,10:300},'3A':{3:175,5:250,8:325,10:400}}
         tA=nAd*rate[coachT][dst]*1.00
         tC=nC*(rate[coachT][dst]*1.00/2.00)
@@ -37,9 +47,11 @@ class Ticket():
         return cost
 
     def costPlatform(self,nIndv):
+        """ Generate Platform ticket cost """
         return nIndv*5.00
 
     def genTicketNRM(self,data=[]):
+        """ Generate a Normal Ticket for a passenger """
         user=data[0]
         nAd=data[1]
         nC=data[2]
@@ -69,7 +81,7 @@ class Ticket():
         bill+=' Payment Gateway :: '+payGate+'\n\n\n\n'
         bill+='HAPPY JOURNEY \n'
 
-        filename='TK#'+idLocal+'.doc'
+        filename='TK#'+idLocal+'.doc'       ## generate a ticket file 
         f=open(filename,'w')
         f.write(bill)
         f.close()
@@ -77,6 +89,7 @@ class Ticket():
         yield bill
 
     def genTicketPTM(self,data=[]):
+        """ Generate a platform tiket """
         user=data[0]
         nIndv=data[1]
         des=data[2]
@@ -93,12 +106,16 @@ class Ticket():
         bill+=' Payment Gateway :: '+payGate+'\n\n\n\n'
         bill+='HAPPY JOURNEY \n'
 
-        filename='TK#'+idLocal+'.doc'
+        filename='TK#'+idLocal+'.doc'           ## generate ticket file 
         f=open(filename,'w')
         f.write(bill)
         f.close()
         yield filename
         yield bill
+
+## end of Class  
+
+
 
 #Example of raw operation for platform ticket
 #t=Ticket()

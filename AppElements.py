@@ -1,16 +1,21 @@
 #!usr/in/python
 
+#
+# File AppElements.py : Class Widgets
+#   contains methods to create elements in 
+#   the app screen
+#
 from Tkinter import *
 from ttk import *
 import tkMessageBox as tkMB
 
 
 class Widgets():
-
+    """ Widgets Class to handle creation of widgets and hold the master(Tkinter.TK object) used to create the widgets on the screen"""
     master=None
     elementList=[]
     def __init__(self,TkObj):
-        """Primary initialize """
+        """Primary initialization setting up Widgets.master to Tkinter.TK object"""
         self.master=TkObj
         
     def createButton(self,master=None,buttonText="",directive=None,placeX=None,placeY=None):
@@ -54,9 +59,13 @@ class Widgets():
         e.place(x=placeX,y=placeY)
         return e
 
+##  End of Class 
+
+
 #### Test procedure ----v
 #root=Tk()
-#ev=Elements(root)
+#ev=Widgets(root)
+#ev.createLabel(ev.master," Heading1 ",300,"#f5c9f5","garamond",20,0,0)
 #root.wm_title(" AppWindow ")
 #root.geometry("1200x600")
 #root.mainloop()
