@@ -1,6 +1,5 @@
 # RepoSJX5
 **Python Tkinter Project for course from NIELIT,Kolkata**
-  **(c) Bishal Biswas**
 
 *Project work for course at NIELIT, Kolkata
 *Project work done by : Bishal Biswas (Student ID : 1920-5201-40-02-002) 
@@ -56,3 +55,4 @@ could and will generate fatal errors and may stop the UI completely from even a 
                   4. ability to book return ticket in the same slot as the normal booking
                   5. addition of formatting to the booked ticket
                   6. removing spurious responses from message boxes
+(c) Bishal Biswas
