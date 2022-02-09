@@ -1,27 +1,27 @@
 # RepoSJX5
 **Python Tkinter Project for course from NIELIT,Kolkata**
 
-*Project work for course at NIELIT, Kolkata
-*Project work done by : Bishal Biswas (Student ID : 1920-5201-40-02-002) 
-*Course Name: CC Python with Linux (80 hours) - (Course ID: 1920-5201-40-02)
-**Project Target: Development of an app/UI using Tkinter and Python(2.7.x specifically) that has the capacity to interact with user on the
+*Project work for course at NIELIT, Kolkata*
+*Project work done by : Bishal Biswas (Student ID : 1920-5201-40-02-002)* 
+*Course Name: CC Python with Linux (80 hours) - (Course ID: 1920-5201-40-02)*
+**_Project Target: Development of an app/UI using Tkinter and Python(2.7.x specifically) that has the capacity to interact with user on the
 frontend and files in the rearend. App must have capacity to take in input, process if possible and then store the changes in files.
-App must also be able to import data directly from files and bring it to the front for the user to see and administer changes.
+App must also be able to import data directly from files and bring it to the front for the user to see and administer changes._**
 
 **Startup point: windowControl.py
     only execute this file to start the app
     
-**Test User: Username and password tags created as a default and not to be replaced
-  *username - def_usr1
-  *password - Usr1pass57
+**Test User: Username and password tags created as a default and not to be replaced**
+  * username - def_usr1
+  * password - Usr1pass57
   NB: Username once created is not replacable
-**Super User: Username and password tags hardcoded to the code for getting access to the Maintenance section of the app
+**Super User: Username and password tags hardcoded to the code for getting access to the Maintenance section of the app**
   this section can be used to add new platform details or change platform names. 
   Note- no access is given to the SuperUser to change or modify any individual user's informations.
-    *username(Main ID) - masterC659
-    *password - plcc982#F
+    * username(Main ID) - masterC659
+    * password - plcc982#F
     
-**File Descriptions:
+**File Descriptions:**
       1. windowControl.py - front end of app; contains app call and window size fix
       2. AppElements.py - class and member methods for generating widget elements into the app window
       3. WindowScreens.py - class and member methods for navigating between various operations of app and handling respective screens
@@ -35,10 +35,11 @@ App must also be able to import data directly from files and bring it to the fro
 
 ***Caution: never remove the files of type .txt --- infoDB.txt, userInfo.txt, UserDetails.txt
 These files are a very integral part of the UI and is important for the operation of the UI. Removing or Renaming these files 
-could and will generate fatal errors and may stop the UI completely from even a small operation.
+could and will generate fatal errors and may stop the UI completely from even a small operation.**
 
 
-*Future Ideas: 1. view/hide passwords (all hidden at moment)
+*Future Ideas:*
+               1. view/hide passwords (all hidden at moment)
                2. passwords editable for the super user
                3. ability to change usernames by request
                4. additional screen in maintenance section to change the rates of tickets
@@ -49,7 +50,8 @@ could and will generate fatal errors and may stop the UI completely from even a 
                9. formatting by using images and framing appUI window for proper display
               10. highlighting of active/inactive entry modules in app
                
-*Future Bugfixes: 1. changes to the treatment of Registered ID of user
+*Future Bugfixes:*
+                  1. changes to the treatment of Registered ID of user
                   2. changes to the treatment of Phone number of user
                   3. changes to the Address entry section so that the whole address is visible and make the entry a wrapable text
                   4. ability to book return ticket in the same slot as the normal booking
