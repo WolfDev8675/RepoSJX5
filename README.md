@@ -17,11 +17,12 @@ App must also be able to import data directly from files and bring it to the fro
   * username - def_usr1
   * password - Usr1pass57
   NB: Username once created is not replacable
+  
 #### **Super User: Username and password tags hardcoded to the code for getting access to the Maintenance section of the app**
-  this section can be used to add new platform details or change platform names. 
-  Note- no access is given to the SuperUser to change or modify any individual user's informations.
-    * username(Main ID) - masterC659
-    * password - plcc982#F
+this section can be used to add new platform details or change platform names. 
+Note- no access is given to the SuperUser to change or modify any individual user's informations.
+* username(Main ID) - masterC659
+* password - plcc982#F
 
 ---    
 **File Descriptions:**
