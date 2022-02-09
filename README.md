@@ -55,4 +55,6 @@ could and will generate fatal errors and may stop the UI completely from even a 
                   4. ability to book return ticket in the same slot as the normal booking
                   5. addition of formatting to the booked ticket
                   6. removing spurious responses from message boxes
-(c) Bishal Biswas
+---
+&copy;[Bishal Biswas(@WolfDev8675)](https://github.com/WolfDev8675)
+_(b.biswas_94587@ieee.org)_
