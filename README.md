@@ -1,9 +1,9 @@
 # RepoSJX5
 **Python Tkinter Project for course from NIELIT,Kolkata**
 ---
-###*Project work for course at NIELIT, Kolkata*
-###*Project work done by : Bishal Biswas (Student ID : 1920-5201-40-02-002)* 
-###*Course Name: CC Python with Linux (80 hours) - (Course ID: 1920-5201-40-02)*
+### *Project work for course at NIELIT, Kolkata*
+### *Project work done by : Bishal Biswas (Student ID : 1920-5201-40-02-002)* 
+### *Course Name: CC Python with Linux (80 hours) - (Course ID: 1920-5201-40-02)*
 
 **_Project Target: Development of an app/UI using Tkinter and Python(2.7.x specifically) that has the capacity to interact with user on the
 frontend and files in the rearend. App must have capacity to take in input, process if possible and then store the changes in files.
