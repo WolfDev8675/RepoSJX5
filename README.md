@@ -10,14 +10,14 @@ frontend and files in the rearend. App must have capacity to take in input, proc
 App must also be able to import data directly from files and bring it to the front for the user to see and administer changes._**
 
 ---
-**Startup point: _windowControl.py_
-    only execute this file to start the app**
+#### **Startup point: _windowControl.py_**
+    **only execute this file to start the app**
 ---    
-**Test User: Username and password tags created as a default and not to be replaced**
+#### **Test User: Username and password tags created as a default and not to be replaced**
   * username - def_usr1
   * password - Usr1pass57
   NB: Username once created is not replacable
-**Super User: Username and password tags hardcoded to the code for getting access to the Maintenance section of the app**
+#### **Super User: Username and password tags hardcoded to the code for getting access to the Maintenance section of the app**
   this section can be used to add new platform details or change platform names. 
   Note- no access is given to the SuperUser to change or modify any individual user's informations.
     * username(Main ID) - masterC659
