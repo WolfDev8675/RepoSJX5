@@ -11,7 +11,7 @@ App must also be able to import data directly from files and bring it to the fro
 
 ---
 #### **Startup point: _windowControl.py_**
-    **only execute this file to start the app**
+**only execute this file to start the app**
 ---    
 #### **Test User: Username and password tags created as a default and not to be replaced**
   * username - def_usr1
