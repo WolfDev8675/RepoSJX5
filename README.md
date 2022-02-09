@@ -1,6 +1,6 @@
 # RepoSJX5
-**Python Tkinter Project for course from NIELIT,Kolkata
-  **(c) Bishal Biswas
+**Python Tkinter Project for course from NIELIT,Kolkata**
+  **(c) Bishal Biswas**
 
 *Project work for course at NIELIT, Kolkata
 *Project work done by : Bishal Biswas (Student ID : 1920-5201-40-02-002) 
